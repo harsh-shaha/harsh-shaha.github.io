@@ -2329,12 +2329,11 @@ var UnityLoader = UnityLoader || {
             else i[a] = r[a];
         return n(e, i) || document.addEventListener("DOMContentLoaded", function() {
 
-            let unityContent = document.getElementById('unityContainer');
-            var tempWidth = window.innerWidth ;
-            var tempHeight = window.innerHeight;
-            unityContent.style.width = tempWidth+'px';
-            unityContent.style.height = tempHeight+'px';
-
+          let unityContent = document.getElementById('unityContainer');
+          var tempWidth = window.innerWidth ;
+          var tempHeight = window.innerHeight;
+          unityContent.style.width = tempWidth+'px';
+          unityContent.style.height = tempHeight+'px';
             n(e, i)
         }), i
     },
