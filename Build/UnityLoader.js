@@ -2328,7 +2328,6 @@ var UnityLoader = UnityLoader || {
                 for (var s in r[a]) i.Module[s] = r[a][s];
             else i[a] = r[a];
         return n(e, i) || document.addEventListener("DOMContentLoaded", function() {
-
           let unityContent = document.getElementById('unityContainer');
           var tempWidth = window.innerWidth ;
           var tempHeight = window.innerHeight;
