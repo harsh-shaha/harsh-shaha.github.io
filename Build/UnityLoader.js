@@ -2552,3 +2552,96 @@ var UnityLoader = UnityLoader || {
         }
     }()
 };
+
+
+var userId_gbl, activityID_gbl, userActivityId_gbl;
+
+function goBack(){
+  console.log("Inside gobAck js");
+  const iPad2 = !!(navigator.userAgent.match(/(iPad)/)
+          || (navigator.platform === "MacIntel" && typeof navigator.standalone !== "undefined"))
+  if(GetMobileOperatingSystem()=="Android"){
+      JsInterface.showToast("goback");
+    }else if(GetMobileOperatingSystem()=="iOS"){
+
+      window.webkit.messageHandlers.showToast.postMessage("goback");
+    }else if(iPad2 == true){
+      window.webkit.messageHandlers.showToast.postMessage("goback");
+    }
+  return "";
+}
+
+/**
+* Determine the mobile operating system.
+* This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+*
+* @returns {String}
+*/
+function GetMobileOperatingSystem() {
+var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    // Windows Phone must come first because its UA also contains "Android"
+  if (/windows phone/i.test(userAgent)) {
+      return "Windows Phone";
+  }
+
+  if (/android/i.test(userAgent)) {
+      return "Android";
+  }
+
+  // iOS detection
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return "iOS";
+  }
+
+  return "unknown";
+}
+
+function executePromise(userid, activityid, userActivityid){
+  userId_gbl = userid;
+  activityID_gbl = activityid;
+  userActivityId_gbl = userActivityid;
+  localStorage["userId"] = userId_gbl;
+  localStorage["activityID"] = activityID_gbl;
+  localStorage["userActivityID"] = userActivityId_gbl;
+}
+
+function androidInitials(){
+  userId_gbl = JsInterface.getUserId();
+  activityID_gbl = JsInterface.getActivityId();
+  userActivityId_gbl = JsInterface.getUseractivityid();
+  localStorage["userId"] = userId_gbl;
+  localStorage["activityID"] = activityID_gbl;
+  localStorage["userActivityID"] = userActivityId_gbl;
+}
+
+function saveScore(score){
+score = parseInt(score);
+if(GetMobileOperatingSystem() =="Android"){
+  androidInitials();
+}
+$.ajax({
+
+             url:"http://www.mashvirtual.info/ZamitActivity.API/api/v1/Activity/SaveGameScore",
+             method:"POST",
+             dataType: "json",
+             contentType:'application/json',
+             data:JSON.stringify({
+               "UserId":userId_gbl,
+               "ActivityID":activityID_gbl,
+               "UserActivityID": userActivityId_gbl,
+               "Score":score
+
+             }),
+             success:function(response) {
+              console.log(response);
+
+            },
+            error:function(){
+             console.log("Error inside tutorialStart",thrownError);
+            }
+
+        });
+
+return "";
+}
