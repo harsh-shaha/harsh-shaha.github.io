@@ -2616,10 +2616,11 @@ function androidInitials(){
 }
 
 function saveScore(score){
-score = parseInt(score);
-if(GetMobileOperatingSystem() =="Android"){
-  androidInitials();
-}
+  console.log("Inside SaveScore JS", score);
+  score = parseInt(score);
+  if(GetMobileOperatingSystem() =="Android"){
+    androidInitials();
+  }
 $.ajax({
 
              url:"http://www.mashvirtual.info/ZamitActivity.API/api/v1/Activity/SaveGameScore",
