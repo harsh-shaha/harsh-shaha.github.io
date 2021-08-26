@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>
-    <script src="TemplateData/jquery-3.5.1.min.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Emoji_Game(3).json", {onProgress: UnityProgress});
@@ -15,12 +14,12 @@
   </head>
   <body>
     <div class="webgl-content">
-      <div id="unityContainer"></div>
-      <!--<div class="footer">
+      <div id="unityContainer" style="width: 960px; height: 600px"></div>
+      <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
         <div class="title">Internship2</div>
-      </div>-->
+      </div>
     </div>
   </body>
 </html>
